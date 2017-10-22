@@ -1,7 +1,13 @@
 package cn.ajsgn.common.generator.util;
 
+/**
+ * <p>字符串工具类</p>
+ */
 public class StrKit {
 	
+	/**
+	 * <p>通过下划线（ _ ）进行驼峰式命名</p>
+	 */
 	public static String toCamelCase(String stringWithUnderline) {
 		if (stringWithUnderline.indexOf('_') == -1)
 			return stringWithUnderline;
@@ -25,7 +31,7 @@ public class StrKit {
 	}
 	
 	/**
-	 * 首字母变小写
+	 * <p>首字母变小写</p>
 	 */
 	public static String firstCharToLowerCase(String str) {
 		char firstChar = str.charAt(0);
@@ -38,7 +44,7 @@ public class StrKit {
 	}
 	
 	/**
-	 * 首字母变大写
+	 * <p>首字母变大写</p>
 	 */
 	public static String firstCharToUpperCase(String str) {
 		char firstChar = str.charAt(0);

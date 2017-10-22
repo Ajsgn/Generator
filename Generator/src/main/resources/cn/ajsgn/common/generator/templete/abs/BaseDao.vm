@@ -1,3 +1,18 @@
+#*
+ * Copyright (c) 2017, Ajsgn 杨光 (Ajsgn@foxmail.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *#
 package ${basePackage_}.abs;
 
 import java.util.List;
@@ -29,8 +44,8 @@ public interface BaseDao<E,C extends DaoCondition> {
 	 * @Title: selectAll
 	 * @Description: 查询当前表下的所有数据
 	 * @return List<E> 结果集合
-	 * @author g.yang@i-vpoints.com
-	 * @date 2017年7月13日 下午5:57:16
+	 * @author Generator
+	 * @date ${createDate_}
 	 */
 	public abstract List<E> selectAll();
 	
@@ -39,8 +54,8 @@ public interface BaseDao<E,C extends DaoCondition> {
 	 * @Title: insert
 	 * @Description: 插入指定实体bean到数据库中
 	 * @param entity 需要插入的实体bean
-	 * @author g.yang@i-vpoints.com
-	 * @date 2017年7月13日 下午2:50:50
+	 * @author Generator
+	 * @date ${createDate_}
 	 */
 	public abstract void insert(E entity);
 	
@@ -49,8 +64,8 @@ public interface BaseDao<E,C extends DaoCondition> {
 	 * @Title: updateById
 	 * @Description: 根据主键更新指定实体bean
 	 * @param entity 需要更新的实体bean
-	 * @author g.yang@i-vpoints.com
-	 * @date 2017年7月13日 下午2:51:17
+	 * @author Generator
+	 * @date ${createDate_}
 	 */
 	public abstract void updateById(E entity);
 	

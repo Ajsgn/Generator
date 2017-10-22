@@ -1,103 +1,82 @@
+/*
+ * Copyright (c) 2017, Ajsgn 杨光 (Ajsgn@foxmail.com).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package cn.ajsgn.common.generator.db.column;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-
 /**
- * Oracle映射关系
+ * <p>Oracle列类型映射</p>
  * @ClassName: OracleColumnMapping
- * @Description: Oracle映射关系
+ * @Description: Oracle列类型映射
  * @author g.yang@i-vpoints.com
  * @date 2017年10月16日 下午6:32:21
  */
-class OracleColumnMapping implements ColumnMapping{
+class OracleColumnMapping extends AbstractColumnMapping{
 	
-	private Map<String,String> javaTypeMapping = new HashMap<String,String>();
-	private Map<String,String> jdbcTypeMapping = new HashMap<String,String>();
-	
-	public OracleColumnMapping(){
-		javaTypeMappingInit();
-		jdbcTypeMappingInit();
+	@Override
+	protected void javaTypeMappingInit(){
+		addColumnClassName("BFILE", "oracle.jdbc.OracleBfile");
+		addColumnClassName("BINARY_DOUBLE", "java.lang.Double");
+		addColumnClassName("BINARY_FLOAT", "java.lang.Float");
+		addColumnClassName("BLOB", "oracle.jdbc.OracleBlob");
+		addColumnClassName("CHAR", "java.lang.String");
+		addColumnClassName("VARCHAR2", "java.lang.String");
+		addColumnClassName("CLOB", "oracle.jdbc.OracleClob");
+		addColumnClassName("DATE", "java.sql.Timestamp");
+		addColumnClassName("NUMBER", "java.math.BigDecimal");
+		addColumnClassName("INTERVALDS", "oracle.sql.INTERVALDS");
+		addColumnClassName("INTERVALYM", "oracle.sql.INTERVALYM");
+		addColumnClassName("INTERVAL DAY(2) TO SECOND(6)", "java.lang.Object");
+		addColumnClassName("INTERVAL YEAR(2) TO MONTH", "java.lang.Object");
+		addColumnClassName("FLOAT", "java.lang.Float");
+		addColumnClassName("LONG", "java.lang.String");
+		addColumnClassName("NCHAR", "java.lang.String");
+		addColumnClassName("NVARCHAR2", "java.lang.String");
+		addColumnClassName("NCLOB", "oracle.jdbc.OracleNClob");
+		addColumnClassName("NVARCHAR2", "java.lang.String");
+		addColumnClassName("RAW", "java.lang.Byte[]");
+		addColumnClassName("ROWID", "oracle.sql.ROWID");
+		addColumnClassName("UROWID", "oracle.sql.ROWID");
+		addColumnClassName("TIMESTAMP", "java.sql.Timestamp");
+		addColumnClassName("TIMESTAMP(6)", "oracle.sql.TIMESTAMP");
 	}
 	
 	@Override
-	public String getColumnClassName(String columnTypeName) {
-		return javaTypeMapping.get(StringUtils.defaultIfBlank(columnTypeName, "").toUpperCase());
-	}
-	
-	@Override
-	public void setColumnClassName(String columnTypeName, String javaType) {
-		javaTypeMapping.put(StringUtils.defaultIfBlank(columnTypeName, "").toUpperCase(), StringUtils.defaultIfBlank(javaType, ""));
+	protected void jdbcTypeMappingInit(){
+		addDbColumnType("BFILE", "OTHER");
+		addDbColumnType("BINARY_DOUBLE", "OTHER");
+		addDbColumnType("BINARY_FLOAT", "OTHER");
+		addDbColumnType("BLOB", "BLOB");
+		addDbColumnType("CHAR", "CHAR");
+		addDbColumnType("VARCHAR2", "VARCHAR");
+		addDbColumnType("CLOB", "CLOB");
+		addDbColumnType("DATE", "DATE");
+		addDbColumnType("FLOAT", "FLOAT");
+		addDbColumnType("NUMBER", "DECIMAL");
+		addDbColumnType("INTERVALDS", "OTHER");
+		addDbColumnType("INTERVALYM", "OTHER");
+		addDbColumnType("INTERVAL DAY(2) TO SECOND(6)", "OTHER");
+		addDbColumnType("INTERVAL YEAR(2) TO MONTH", "OTHER");
+		addDbColumnType("LONG", "LONG VARCHAR");
+		addDbColumnType("NCHAR", "NCHAR");
+		addDbColumnType("NVARCHAR2", "OTHER");
+		addDbColumnType("NCLOB", "NCLOB");
+		addDbColumnType("RAW", "OTHER");
+		addDbColumnType("ROWID", "OTHER");
+		addDbColumnType("UROWID", "OTHER");
+		addDbColumnType("TIMESTAMP", "TIMESTAMP");
+		addDbColumnType("TIMESTAMP(6)", "TIMESTAMP");
 	}
 
-	@Override
-	public String getDbColumnType(String columnTypeName) {
-		return jdbcTypeMapping.get(StringUtils.defaultIfBlank(columnTypeName, "").toUpperCase());
-	}
-
-	@Override
-	public void setDbColumnType(String columnTypeName, String jdbcType) {
-		jdbcTypeMapping.put(StringUtils.defaultIfBlank(columnTypeName, "").toUpperCase(), StringUtils.defaultIfBlank(jdbcType, ""));
-	}
-	
-	private void javaTypeMappingInit(){
-		javaTypeMapping.put("BFILE", "oracle.jdbc.OracleBfile");
-		javaTypeMapping.put("BINARY_DOUBLE", "java.lang.Double");
-		javaTypeMapping.put("BINARY_FLOAT", "java.lang.Float");
-		javaTypeMapping.put("BLOB", "oracle.jdbc.OracleBlob");
-		javaTypeMapping.put("CHAR", "java.lang.String");
-		javaTypeMapping.put("VARCHAR2", "java.lang.String");
-		javaTypeMapping.put("CLOB", "oracle.jdbc.OracleClob");
-		javaTypeMapping.put("DATE", "java.sql.Timestamp");
-		javaTypeMapping.put("NUMBER", "java.math.BigDecimal");
-		javaTypeMapping.put("INTERVALDS", "oracle.sql.INTERVALDS");
-		javaTypeMapping.put("INTERVALYM", "oracle.sql.INTERVALYM");
-		javaTypeMapping.put("INTERVAL DAY(2) TO SECOND(6)", "java.lang.Object");
-		javaTypeMapping.put("INTERVAL YEAR(2) TO MONTH", "java.lang.Object");
-		javaTypeMapping.put("FLOAT", "java.lang.Float");
-		javaTypeMapping.put("LONG", "java.lang.String");
-		javaTypeMapping.put("NCHAR", "java.lang.String");
-		javaTypeMapping.put("NVARCHAR2", "java.lang.String");
-		javaTypeMapping.put("NCLOB", "oracle.jdbc.OracleNClob");
-		javaTypeMapping.put("NVARCHAR2", "java.lang.String");
-		javaTypeMapping.put("RAW", "java.lang.Byte[]");
-		javaTypeMapping.put("ROWID", "oracle.sql.ROWID");
-		javaTypeMapping.put("UROWID", "oracle.sql.ROWID");
-		javaTypeMapping.put("TIMESTAMP", "java.sql.Timestamp");
-		javaTypeMapping.put("TIMESTAMP(6)", "oracle.sql.TIMESTAMP");
-	}
-	
-	private void jdbcTypeMappingInit(){
-		jdbcTypeMapping.put("BFILE", "OTHER");
-		jdbcTypeMapping.put("BINARY_DOUBLE", "OTHER");
-		jdbcTypeMapping.put("BINARY_FLOAT", "OTHER");
-		jdbcTypeMapping.put("BLOB", "BLOB");
-		jdbcTypeMapping.put("CHAR", "CHAR");
-		jdbcTypeMapping.put("VARCHAR2", "VARCHAR");
-		jdbcTypeMapping.put("CLOB", "CLOB");
-		jdbcTypeMapping.put("DATE", "DATE");
-		jdbcTypeMapping.put("FLOAT", "FLOAT");
-		jdbcTypeMapping.put("NUMBER", "DECIMAL");
-		jdbcTypeMapping.put("INTERVALDS", "OTHER");
-		jdbcTypeMapping.put("INTERVALYM", "OTHER");
-		jdbcTypeMapping.put("INTERVAL DAY(2) TO SECOND(6)", "OTHER");
-		jdbcTypeMapping.put("INTERVAL YEAR(2) TO MONTH", "OTHER");
-		jdbcTypeMapping.put("LONG", "LONG VARCHAR");
-		jdbcTypeMapping.put("NCHAR", "NCHAR");
-		jdbcTypeMapping.put("NVARCHAR2", "OTHER");
-		jdbcTypeMapping.put("NCLOB", "NCLOB");
-		jdbcTypeMapping.put("RAW", "OTHER");
-		jdbcTypeMapping.put("ROWID", "OTHER");
-		jdbcTypeMapping.put("UROWID", "OTHER");
-		jdbcTypeMapping.put("TIMESTAMP", "TIMESTAMP");
-		jdbcTypeMapping.put("TIMESTAMP(6)", "TIMESTAMP");
-	}
-
-	@Override
-	public String toString() {
-		return "OracleColumnMapping [javaTypeMapping=" + javaTypeMapping + ", jdbcTypeMapping=" + jdbcTypeMapping + "]";
-	}
-	
 }
