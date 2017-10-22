@@ -17,8 +17,8 @@ package cn.ajsgn.common.generator.test.main;
 
 import java.sql.SQLException;
 
+import cn.ajsgn.common.generator.core.Generator;
 import cn.ajsgn.common.generator.db.TableConfig;
-import cn.ajsgn.common.generator.db.core.Generator;
 
 /**
  * <p>使用示例demo</p>
