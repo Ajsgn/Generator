@@ -1,0 +1,16 @@
+package ${basePackage_}.service;
+
+import ${basePackage_}.condition.${beanName}Condition;
+import ${basePackage_}.entity.${beanName};
+import ${basePackage_}.abs.BaseService;
+
+/**
+ * <p>${beanName}的基础操作Service</p>
+ * @ClassName: ${beanName}Service
+ * @Description: ${beanName}基础操作的Service
+ * @author Generator
+ * @date ${createDate_}
+ */
+public interface ${beanName}Service extends BaseService<${beanName},${beanName}Condition>{
+
+}

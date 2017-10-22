@@ -1,0 +1,19 @@
+package ${basePackage_}.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import ${basePackage_}.condition.${beanName}Condition;
+import ${basePackage_}.entity.${beanName};
+import ${basePackage_}.abs.BaseDao;
+
+/**
+ * <p>${beanName}数据层的基础操作</p>
+ * @ClassName: ${beanName}Dao
+ * @Description: ${beanName}数据层的基础操作
+ * @author Generator
+ * @date ${createDate_}
+ */
+@Mapper
+public interface ${beanName}Dao extends BaseDao<${beanName}, ${beanName}Condition>{
+
+}

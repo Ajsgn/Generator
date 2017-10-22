@@ -1,0 +1,37 @@
+package ${basePackage_}.condition;
+
+import ${basePackage_}.abs.DaoCondition;
+
+/**
+ * <p>用于封装查询条件</p>
+ * <p>默认条件下仅生成数据表字段的查询条件，更多条件，请自行添加</p>
+ * @author Generator
+ * @date ${createDate_}
+ */
+public class ${beanName}Condition implements DaoCondition{
+
+	#foreach( $columnInfo in $columnInfos) 
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	private ${columnMapping.getColumnClassName($columnInfo.typeName)} ${columnInfo.columnCamelName};
+	#end
+	#foreach( $columnInfo in $columnInfos) 
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	public ${columnMapping.getColumnClassName($columnInfo.typeName)} get${columnInfo.columnEntityName}(){
+		return $columnInfo.columnCamelName;
+	}
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	public void set${columnInfo.columnEntityName}(${columnMapping.getColumnClassName($columnInfo.typeName)} ${columnInfo.columnCamelName}){
+		this.${columnInfo.columnCamelName} = ${columnInfo.columnCamelName};
+	}
+	#end
+
+}

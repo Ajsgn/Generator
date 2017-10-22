@@ -1,0 +1,34 @@
+package ${basePackage_}.entity;
+
+/**
+ * <p>封装实体bean</p>
+ * @author Generator
+ * @date ${createDate_}
+ */
+public class ${beanName} {
+
+	#foreach( $columnInfo in $columnInfos) 
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	private ${columnMapping.getColumnClassName($columnInfo.typeName)} ${columnInfo.columnCamelName};
+	#end
+	#foreach( $columnInfo in $columnInfos) 
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	public ${columnMapping.getColumnClassName($columnInfo.typeName)} get${columnInfo.columnEntityName}(){
+		return $columnInfo.columnCamelName;
+	}
+	
+	/**
+	 * $!columnInfo.remarks
+	 */
+	public void set${columnInfo.columnEntityName}(${columnMapping.getColumnClassName($columnInfo.typeName)} ${columnInfo.columnCamelName}){
+		this.${columnInfo.columnCamelName} = ${columnInfo.columnCamelName};
+	}
+	#end
+
+}

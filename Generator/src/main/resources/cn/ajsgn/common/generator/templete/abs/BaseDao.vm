@@ -1,0 +1,57 @@
+package ${basePackage_}.abs;
+
+import java.util.List;
+
+/**
+ * <p>数据库层操作的共性方法抽象</p>
+ * @ClassName: BaseDao
+ * @Description: 数据库层操作的共性方法抽象
+ * @author Generator
+ * @date ${createDate_}
+ * @param <E> E Element 类型元素，返回类型
+ * @param <C> Condition 操作条件
+ */
+public interface BaseDao<E,C extends DaoCondition> {
+	
+	/**
+	 * <p>通过给定查询条件，查询出一组结果集</p>
+	 * @Title: selectByConditions
+	 * @Description: 通过给定查询条件，查询出一组结果集
+	 * @param daoConditions 查询条件
+	 * @return List<E> 查询结果集
+	 * @author Generator
+	 * @date ${createDate_}
+	 */
+	public abstract List<E> selectByConditions(C daoConditions);
+	
+	/**
+	 * <p>查询当前表下的所有数据</p>
+	 * @Title: selectAll
+	 * @Description: 查询当前表下的所有数据
+	 * @return List<E> 结果集合
+	 * @author g.yang@i-vpoints.com
+	 * @date 2017年7月13日 下午5:57:16
+	 */
+	public abstract List<E> selectAll();
+	
+	/**
+	 * <p>插入指定实体bean到数据库中</p>
+	 * @Title: insert
+	 * @Description: 插入指定实体bean到数据库中
+	 * @param entity 需要插入的实体bean
+	 * @author g.yang@i-vpoints.com
+	 * @date 2017年7月13日 下午2:50:50
+	 */
+	public abstract void insert(E entity);
+	
+	/**
+	 * <p>根据主键更新指定实体bean</p>
+	 * @Title: updateById
+	 * @Description: 根据主键更新指定实体bean
+	 * @param entity 需要更新的实体bean
+	 * @author g.yang@i-vpoints.com
+	 * @date 2017年7月13日 下午2:51:17
+	 */
+	public abstract void updateById(E entity);
+	
+}

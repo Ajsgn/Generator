@@ -1,0 +1,11 @@
+package ${basePackage_}.abs;
+
+/**
+ * <p>查询条件接口声明</p>
+ * @author Generator
+ * @date ${createDate_}
+ */
+public interface DaoCondition {
+
+}
+

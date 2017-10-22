@@ -1,0 +1,30 @@
+package ${basePackage_}.service.impl;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import ${basePackage_}.condition.${beanName}Condition;
+import ${basePackage_}.dao.${beanName}Dao;
+import ${basePackage_}.entity.${beanName};
+import ${basePackage_}.abs.BaseDao;
+import ${basePackage_}.abs.AbstractServiceImpl;
+import ${basePackage_}.service.${beanName}Service;
+
+@Service
+public class ${beanName}ServiceImpl extends AbstractServiceImpl<${beanName}, ${beanName}Condition, BaseDao<${beanName},${beanName}Condition>> implements ${beanName}Service{
+	
+	@Resource
+	private ${beanName}Dao ${lowBeanName}Dao;
+	
+	@Override
+	protected BaseDao<${beanName}, ${beanName}Condition> daoSupport() {
+		return ${lowBeanName}Dao;
+	}
+
+	@Override
+	protected ${beanName}Condition blankCondition() {
+		return new ${beanName}Condition();
+	}
+
+}

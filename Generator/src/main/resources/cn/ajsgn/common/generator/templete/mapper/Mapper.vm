@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- ${createDate_} by Generator -->
+<mapper namespace="${basePackage_}.dao.${beanName}Dao">
+
+  <resultMap id="BaseResultMap" type="${basePackage_}.entity.${beanName}">
+	#foreach( $columnInfo in $columnInfos) 
+	<result column="${columnInfo.columnName}" jdbcType="${columnMapping.getDbColumnType($columnInfo.typeName)}" property="${columnInfo.columnCamelName}" />
+	#end
+  </resultMap>
+
+  <sql id="Base_Column_List">
+	#baseColumns()
+  </sql>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+    from ${schemaName}.${tableName}
+  </select>
+  
+  <select id="selectByConditions" parameterType="${basePackage_}.condition.${beanName}Condition" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from ${schemaName}.${tableName}
+	<where>
+	  #foreach( $columnInfo in $columnInfos) 
+      <if test="${columnInfo.columnCamelName} != null">
+        AND ${columnInfo.columnName} = #{${columnInfo.columnCamelName},jdbcType=${columnMapping.getDbColumnType($columnInfo.typeName)}}
+      </if>
+      #end
+	</where>
+  </select>
+  
+  <insert id="insert" parameterType="com.best.choice.payment.entity.bccore.FeifanStoreMapping">
+    insert into ${schemaName}.${tableName}
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+  	  #foreach( $columnInfo in $columnInfos) 
+      <if test="${columnInfo.columnCamelName} != null">
+        ${columnInfo.columnName}, 
+      </if>
+      #end
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #foreach( $columnInfo in $columnInfos) 
+      <if test="${columnInfo.columnCamelName} != null">
+        #{${columnInfo.columnCamelName},jdbcType=${columnMapping.getDbColumnType($columnInfo.typeName)}},
+      </if>
+      #end
+    </trim>
+  </insert>
+  
+  <update id="updateById" parameterType="com.best.choice.payment.entity.bccore.FeifanStoreMapping">
+    update ${schemaName}.${tableName}
+    <set>
+  	  #foreach( $columnInfo in $columnInfos) 
+      <if test="${columnInfo.columnCamelName} != null">
+        ${columnInfo.columnName} = #{${columnInfo.columnCamelName},jdbcType=${columnMapping.getDbColumnType($columnInfo.typeName)}},
+      </if>
+      #end
+    </set>
+	<where>
+	  #if(!$primaryKeys)
+	  AND ID = #{ID,jdbcType=VARCHAR}
+	  #end
+	  #if($primaryKeys)
+	  #foreach( $pk in $primaryKeys)
+      <if test="${pk.columnCamelName} != null">
+      AND ${pk.columnName} = #{${pk.columnCamelName},jdbcType=${columnMapping.getDbColumnType($pk.typeName)}}
+      </if>
+	  #end
+	  #end
+	</where>
+  </update>
+
+</mapper>
