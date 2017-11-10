@@ -13,36 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.abs;
+package ${basePackage_}.${templeteVariable_.absPackage};
 
 import java.util.List;
 
 /**
  * <p>服务接口的抽象实现</p>
- * @ClassName: AbstractServiceImpl
+ * @ClassName: Abstract${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix}
  * @Description: <p>服务接口的抽象实现</p>
  * @author Generator
  * @date ${createDate_}
  * @param <E> Element 查询结果返回类型元素
- * @param <C> Condition 查询条件
- * @param <D> Dao 数据层操作支持
+ * @param <C> ${templeteVariable_.conditionSuffix} 查询条件
+ * @param <D> ${templeteVariable_.daoSuffix} 数据层操作支持
  */
-public abstract class AbstractServiceImpl<E,C extends DaoCondition,D extends BaseDao<E, C>> implements BaseService<E,C> {
+public abstract class Abstract${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix}<E,C extends Dao${templeteVariable_.conditionSuffix},D extends Base${templeteVariable_.daoSuffix}<E, C>> implements Base${templeteVariable_.serviceSuffix}<E,C> {
 	
 	@Override
-	public void updateById(E entity) {
-		daoSupport().updateById(entity);
+	public void updateById(E ${templeteVariable_.entityPackage}) {
+		daoSupport().updateById(${templeteVariable_.entityPackage});
 	}
 
 	@Override
 	public List<E> selectAll() {
-		C daoConditions = blankCondition();
-		return selectList(daoConditions);
+		C dao${templeteVariable_.conditionSuffix} = blank${templeteVariable_.conditionSuffix}();
+		return selectList(dao${templeteVariable_.conditionSuffix});
 	}
 	
 	@Override
-	public void insert(E entity) {
-		daoSupport().insert(entity);
+	public void insert(E ${templeteVariable_.entityPackage}) {
+		daoSupport().insert(${templeteVariable_.entityPackage});
 	}
 	
 	/**
@@ -50,15 +50,15 @@ public abstract class AbstractServiceImpl<E,C extends DaoCondition,D extends Bas
 	 * <p>这个方法的思想，在于只希望获取一个对象，如果获取对象，说明查询条件的唯一索引没有成功建立！是否需要抛异常，自行修改~</p>
 	 * @Title: selectFirst
 	 * @Description: 查询一个符合条件的记录
-	 * @param daoConditions 查询条件
+	 * @param dao${templeteVariable_.conditionSuffix} 查询条件
 	 * @return E 查询结果
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
 	@Override
-	public E selectFirst(C daoConditions){
+	public E selectFirst(C dao${templeteVariable_.conditionSuffix}){
 		E result = null;
-		List<E> list = selectList(daoConditions);
+		List<E> list = selectList(dao${templeteVariable_.conditionSuffix});
 		if(null != list && false == list.isEmpty()){
 			result = list.get(0);
 		}
@@ -69,15 +69,15 @@ public abstract class AbstractServiceImpl<E,C extends DaoCondition,D extends Bas
 	 * <p>查询一个结果集合</p>
 	 * @Title: selectList
 	 * @Description: 查询一个结果集合
-	 * @param daoConditions 查询条件
+	 * @param dao${templeteVariable_.conditionSuffix} 查询条件
 	 * @return List<E> 查询结果
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
 	@Override
-	public List<E> selectList(C daoConditions){
+	public List<E> selectList(C dao${templeteVariable_.conditionSuffix}){
 		D dao = daoSupport();
-		return dao.selectByConditions(daoConditions);
+		return dao.selectBy${templeteVariable_.conditionSuffix}(dao${templeteVariable_.conditionSuffix});
 	}
 	
 	/**
@@ -93,12 +93,12 @@ public abstract class AbstractServiceImpl<E,C extends DaoCondition,D extends Bas
 	
 	/**
 	 * <p>提供一个空白的查询条件</p>
-	 * @Title: blankCondition
+	 * @Title: blank${templeteVariable_.conditionSuffix}
 	 * @Description: 提供一个空白的查询条件
 	 * @return C 一个空白条件的查询条件
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	protected abstract C blankCondition();
+	protected abstract C blank${templeteVariable_.conditionSuffix}();
 
 }

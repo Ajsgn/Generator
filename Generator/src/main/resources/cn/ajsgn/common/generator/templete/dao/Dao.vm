@@ -13,22 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.dao;
+package ${basePackage_}.${templeteVariable_.daoPackage};
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ${basePackage_}.condition.${beanName}Condition;
-import ${basePackage_}.entity.${beanName};
-import ${basePackage_}.abs.BaseDao;
+import ${basePackage_}.${templeteVariable_.daoPackage}.${beanName}${templeteVariable_.conditionSuffix};
+import ${basePackage_}.${templeteVariable_.entityPackage}.${beanName};
+import ${basePackage_}.${templeteVariable_.absPackage}.Base${templeteVariable_.daoSuffix};
 
 /**
  * <p>${beanName}数据层的基础操作</p>
- * @ClassName: ${beanName}Dao
+ * @ClassName: ${beanName}${templeteVariable_.daoSuffix}
  * @Description: ${beanName}数据层的基础操作
  * @author Generator
  * @date ${createDate_}
  */
 @Mapper
-public interface ${beanName}Dao extends BaseDao<${beanName}, ${beanName}Condition>{
+public interface ${beanName}${templeteVariable_.daoSuffix} extends Base${templeteVariable_.daoSuffix}<${beanName}, ${beanName}${templeteVariable_.conditionSuffix}>{
 
 }

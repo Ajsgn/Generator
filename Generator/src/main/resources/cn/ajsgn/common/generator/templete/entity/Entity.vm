@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.entity;
+package ${basePackage_}.${templeteVariable_.entityPackage};
 
 /**
  * <p>封装实体bean</p>
@@ -23,7 +23,6 @@ package ${basePackage_}.entity;
 public class ${beanName} {
 
 	#foreach( $columnInfo in $columnInfos) 
-	
 	/**
 	 * $!columnInfo.remarks
 	 */

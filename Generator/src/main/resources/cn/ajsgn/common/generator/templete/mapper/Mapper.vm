@@ -16,9 +16,9 @@
  *#
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- ${createDate_} by Generator -->
-<mapper namespace="${basePackage_}.dao.${beanName}Dao">
+<mapper namespace="${basePackage_}.${templeteVariable_.daoPackage}.${beanName}${templeteVariable_.daoSuffix}">
 
-  <resultMap id="BaseResultMap" type="${basePackage_}.entity.${beanName}">
+  <resultMap id="BaseResultMap" type="${basePackage_}.${templeteVariable_.entityPackage}.${beanName}">
 	#foreach( $columnInfo in $columnInfos) 
 	<result column="${columnInfo.columnName}" jdbcType="${columnMapping.getDbColumnType($columnInfo.typeName)}" property="${columnInfo.columnCamelName}" />
 	#end
@@ -34,7 +34,7 @@
     from ${schemaName}.${tableName}
   </select>
   
-  <select id="selectByConditions" parameterType="${basePackage_}.condition.${beanName}Condition" resultMap="BaseResultMap">
+  <select id="selectBy${templeteVariable_.conditionSuffix}" parameterType="${basePackage_}.${templeteVariable_.conditionPackage}.${beanName}${templeteVariable_.conditionSuffix}" resultMap="BaseResultMap">
   	select
   	<include refid="Base_Column_List" />
   	from ${schemaName}.${tableName}
@@ -47,7 +47,7 @@
 	</where>
   </select>
   
-  <insert id="insert" parameterType="${basePackage_}.entity.${beanName}">
+  <insert id="insert" parameterType="${basePackage_}.${templeteVariable_.entityPackage}.${beanName}">
     insert into ${schemaName}.${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
   	  #foreach( $columnInfo in $columnInfos) 
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   
-  <update id="updateById" parameterType="${basePackage_}.entity.${beanName}">
+  <update id="updateById" parameterType="${basePackage_}.${templeteVariable_.entityPackage}.${beanName}">
     update ${schemaName}.${tableName}
     <set>
   	  #foreach( $columnInfo in $columnInfos) 

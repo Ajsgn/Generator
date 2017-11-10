@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.condition;
+package ${basePackage_}.${templeteVariable_.conditionPackage};
 
-import ${basePackage_}.abs.DaoCondition;
+import ${basePackage_}.${templeteVariable_.absPackage}.Dao${templeteVariable_.conditionSuffix};
 
 /**
  * <p>用于封装查询条件</p>
@@ -23,10 +23,9 @@ import ${basePackage_}.abs.DaoCondition;
  * @author Generator
  * @date ${createDate_}
  */
-public class ${beanName}Condition implements DaoCondition{
+public class ${beanName}${templeteVariable_.conditionSuffix} implements Dao${templeteVariable_.conditionSuffix}{
 
 	#foreach( $columnInfo in $columnInfos) 
-	
 	/**
 	 * $!columnInfo.remarks
 	 */

@@ -13,33 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.service.impl;
+package ${basePackage_}.${templeteVariable_.servicePackage}.${templeteVariable_.implPackage};
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import ${basePackage_}.condition.${beanName}Condition;
-import ${basePackage_}.dao.${beanName}Dao;
-import ${basePackage_}.entity.${beanName};
-import ${basePackage_}.abs.BaseDao;
-import ${basePackage_}.abs.AbstractServiceImpl;
-import ${basePackage_}.service.${beanName}Service;
+import ${basePackage_}.${templeteVariable_.conditionPackage}.${beanName}${templeteVariable_.conditionSuffix};
+import ${basePackage_}.${templeteVariable_.daoPackage}.${beanName}${templeteVariable_.daoSuffix};
+import ${basePackage_}.${templeteVariable_.entityPackage}.${beanName};
+import ${basePackage_}.${templeteVariable_.absPackage}.Base${templeteVariable_.daoSuffix};
+import ${basePackage_}.${templeteVariable_.absPackage}.Abstract${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix};
+import ${basePackage_}.${templeteVariable_.servicePackage}.${beanName}${templeteVariable_.serviceSuffix};
 
 @Service
-public class ${beanName}ServiceImpl extends AbstractServiceImpl<${beanName}, ${beanName}Condition, BaseDao<${beanName},${beanName}Condition>> implements ${beanName}Service{
+public class ${beanName}${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix} extends Abstract${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix}<${beanName}, ${beanName}${templeteVariable_.conditionSuffix}, Base${templeteVariable_.daoSuffix}<${beanName},${beanName}${templeteVariable_.conditionSuffix}>> implements ${beanName}${templeteVariable_.serviceSuffix}{
 	
 	@Resource
-	private ${beanName}Dao ${lowBeanName}Dao;
+	private ${beanName}${templeteVariable_.daoSuffix} ${lowBeanName}${templeteVariable_.daoSuffix};
 	
 	@Override
-	protected BaseDao<${beanName}, ${beanName}Condition> daoSupport() {
-		return ${lowBeanName}Dao;
+	protected Base${templeteVariable_.daoSuffix}<${beanName}, ${beanName}${templeteVariable_.conditionSuffix}> daoSupport() {
+		return ${lowBeanName}${templeteVariable_.daoSuffix};
 	}
 
 	@Override
-	protected ${beanName}Condition blankCondition() {
-		return new ${beanName}Condition();
+	protected ${beanName}${templeteVariable_.conditionSuffix} blank${templeteVariable_.conditionSuffix}() {
+		return new ${beanName}${templeteVariable_.conditionSuffix}();
 	}
 
 }

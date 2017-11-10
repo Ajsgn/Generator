@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.abs;
+package ${basePackage_}.${templeteVariable_.absPackage};
 
 /**
  * <p>查询条件接口声明</p>
  * @author Generator
  * @date ${createDate_}
  */
-public interface DaoCondition {
+public interface Dao${templeteVariable_.conditionSuffix} {
 
 }
 

@@ -31,6 +31,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import cn.ajsgn.common.generator.db.column.ColumnMapping;
 import cn.ajsgn.common.generator.db.column.ColumnMappingFactory;
+import cn.ajsgn.common.generator.db.config.TempleteVariable;
 import cn.ajsgn.common.generator.util.StrKit;
 import cn.ajsgn.common.generator.vm.VolecityInstance;
 
@@ -47,7 +48,8 @@ public class Table {
 	private TableConfig tableConfig;
 	private List<ColumnInfo> columnInfos;
 	private ColumnMapping columnMapping;
-	
+	private TempleteVariable templeteVariable;
+
 	private VolecityInstance instance;
 	
 	/**
@@ -151,9 +153,12 @@ public class Table {
 	 * @date 2017年10月22日 下午7:20:57
 	 */
 	public void generatorDaoCondition(){
+		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		File parentFile = tableConfig.getAbsFloderFile();
-		File targetFile = new File(parentFile,"DaoCondition.java");
-		flushFile("cn/ajsgn/common/generator/templete/abs/DaoCondition.vm", targetFile,new LinkedHashMap<String,Object>());
+		File targetFile = new File(parentFile,String.format("Dao%s.java", getTempleteVariable().getConditionSuffix()));
+		
+		params.put("templeteVariable_", getTempleteVariable());
+		flushFile("cn/ajsgn/common/generator/templete/abs/DaoCondition.vm", targetFile,params);
 	}
 	
 	/**
@@ -164,9 +169,12 @@ public class Table {
 	 * @date 2017年10月22日 下午7:22:27
 	 */
 	public void generatorAbstractServiceImpl(){
+		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		File parentFile = tableConfig.getAbsFloderFile();
-		File targetFile = new File(parentFile,"AbstractServiceImpl.java");
-		flushFile("cn/ajsgn/common/generator/templete/abs/AbstractServiceImpl.vm", targetFile,new LinkedHashMap<String,Object>());
+		File targetFile = new File(parentFile,String.format("Abstract%s%s.java", getTempleteVariable().getServiceSuffix(), getTempleteVariable().getImplSuffix()));
+		
+		params.put("templeteVariable_", getTempleteVariable());
+		flushFile("cn/ajsgn/common/generator/templete/abs/AbstractServiceImpl.vm", targetFile,params);
 	}
 	
 	/**
@@ -177,9 +185,12 @@ public class Table {
 	 * @date 2017年10月22日 下午7:23:10
 	 */
 	public void generatorBaseDao(){
+		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		File parentFile = tableConfig.getAbsFloderFile();
-		File targetFile = new File(parentFile,"BaseDao.java");
-		flushFile("cn/ajsgn/common/generator/templete/abs/BaseDao.vm", targetFile, new LinkedHashMap<String,Object>());
+		File targetFile = new File(parentFile,String.format("Base%s.java", getTempleteVariable().getDaoSuffix()));
+		
+		params.put("templeteVariable_", getTempleteVariable());
+		flushFile("cn/ajsgn/common/generator/templete/abs/BaseDao.vm", targetFile, params);
 	}
 	
 	/**
@@ -190,9 +201,12 @@ public class Table {
 	 * @date 2017年10月22日 下午7:24:04
 	 */
 	public void generatorBaseService(){
+		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		File parentFile = tableConfig.getAbsFloderFile();
-		File targetFile = new File(parentFile,"BaseService.java");
-		flushFile("cn/ajsgn/common/generator/templete/abs/BaseService.vm", targetFile, new LinkedHashMap<String,Object>());
+		File targetFile = new File(parentFile,String.format("Base%s.java", getTempleteVariable().getServiceSuffix()));
+		
+		params.put("templeteVariable_", getTempleteVariable());
+		flushFile("cn/ajsgn/common/generator/templete/abs/BaseService.vm", targetFile, params);
 	}
 	
 	/**
@@ -205,12 +219,13 @@ public class Table {
 	public void generatorEntity(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getEntityFloderFile();
-		File targetFile = new File(parentFile,beanName+".java");
+		File targetFile = new File(parentFile,String.format("%s.java", beanName));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		params.put("columnInfos", columnInfos);
 		params.put("columnMapping", columnMapping);
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/entity/Entity.vm", targetFile, params);
 	}
 	
@@ -224,12 +239,13 @@ public class Table {
 	public void generatorCondition(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getConditionFloderFile();
-		File targetFile = new File(parentFile,beanName+"Condition.java");
+		File targetFile = new File(parentFile,String.format("%s%s.java", beanName, getTempleteVariable().getConditionSuffix()));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		params.put("columnInfos", columnInfos);
 		params.put("columnMapping", columnMapping);
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/condition/Condition.vm", targetFile, params);
 	}
 	
@@ -243,10 +259,11 @@ public class Table {
 	public void generatorDao(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getDaoFloderFile();
-		File targetFile = new File(parentFile,beanName+"Dao.java");
+		File targetFile = new File(parentFile,String.format("%s%s.java", beanName, getTempleteVariable().getDaoSuffix()));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/dao/Dao.vm", targetFile, params);
 	}
 	
@@ -260,7 +277,7 @@ public class Table {
 	public void generatorMapper(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getMapperFloderFile();
-		File targetFile = new File(parentFile,beanName+"Mapper.xml");
+		File targetFile = new File(parentFile,String.format("%s%s.xml", beanName, getTempleteVariable().getMapperSuffix()));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		params.put("schemaName", getSchemaName());
@@ -269,6 +286,7 @@ public class Table {
 		params.put("columnMapping", columnMapping);
 		params.put("primaryKeys", primaryKeys());
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/mapper/Mapper.vm", targetFile, params);
 	}
 	
@@ -282,10 +300,11 @@ public class Table {
 	public void generatorService(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getServiceFloderFile();
-		File targetFile = new File(parentFile,beanName+"Service.java");
+		File targetFile = new File(parentFile,String.format("%s%s.java", beanName, getTempleteVariable().getServiceSuffix()));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/service/Service.vm", targetFile, params);
 	}
 	
@@ -299,11 +318,12 @@ public class Table {
 	public void generatorServiceImpl(){
 		String beanName = tableConfig.getBeanName();
 		File parentFile = tableConfig.getServiceImplFloderFile();
-		File targetFile = new File(parentFile,beanName+"ServiceImpl.java");
+		File targetFile = new File(parentFile,String.format("%s%s%s.java", beanName, getTempleteVariable().getServiceSuffix(), getTempleteVariable().getImplSuffix()));
 		Map<String,Object> params = new LinkedHashMap<String,Object>();
 		params.put("beanName", beanName);
 		params.put("lowBeanName", StrKit.firstCharToLowerCase(beanName));
 		
+		params.put("templeteVariable_", getTempleteVariable());
 		flushFile("cn/ajsgn/common/generator/templete/service/impl/ServiceImpl.vm", targetFile, params);
 	}
 	
@@ -328,6 +348,17 @@ public class Table {
 		}
 	}
 	
+	public TempleteVariable getTempleteVariable() {
+		if(null == templeteVariable) {
+			setTempleteVariable(new TempleteVariable());
+		}
+		return templeteVariable;
+	}
+
+	public void setTempleteVariable(TempleteVariable templeteVariable) {
+		this.templeteVariable = templeteVariable;
+	}
+
 	/**
 	 * <p>模板文件输出</p>
 	 * @Title: flush

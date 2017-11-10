@@ -19,6 +19,7 @@ import java.io.File;
 
 import org.apache.commons.lang3.StringUtils;
 
+import cn.ajsgn.common.generator.db.config.TempleteVariable;
 import cn.ajsgn.common.generator.util.FileUtil;
 import cn.ajsgn.common.generator.util.StrKit;
 
@@ -49,6 +50,8 @@ public class TableConfig {
 	private File serviceFloderFile;
 	private File serviceImplFloderFile;
 	
+	private TempleteVariable templeteVariable;
+	
 	/**
 	 * <p>构造函数</p>
 	 * @param schemaName 当前表所属schema，sql中会在表前面加上sechema前缀，可为空
@@ -58,6 +61,10 @@ public class TableConfig {
 	 * @param basePackage 基础包名称描述，不可为空
 	 */
 	public TableConfig(String schemaName, String tableName, String beanName, String basePath, String basePackage){
+		this(schemaName, tableName, beanName, basePath, basePackage, null);
+	}
+	
+	public TableConfig(String schemaName, String tableName, String beanName, String basePath, String basePackage, TempleteVariable templeteVariable){
 		setTableName(tableName);
 		setBasePath(basePath);
 		setBasePackage(basePackage);
@@ -66,6 +73,8 @@ public class TableConfig {
 		
 		initBasePathFloderFile();
 		initBasePackageFloderFile();
+		
+		setTempleteVariable(templeteVariable);
 		
 		init();
 	}
@@ -270,25 +279,25 @@ public class TableConfig {
 	 * @date 2017年10月22日 下午8:03:05
 	 */
 	private void init() {
-		absFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"abs");
+		absFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getAbsPackage());
 		FileUtil.mkdirsIfNotExists(absFloderFile);
 		
-		entityFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"entity");
+		entityFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getEntityPackage());
 		FileUtil.mkdirsIfNotExists(entityFloderFile);
 		
-		conditionFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"condition");
+		conditionFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getConditionPackage());
 		FileUtil.mkdirsIfNotExists(conditionFloderFile);
 		
-		daoFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"dao");
+		daoFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getDaoPackage());
 		FileUtil.mkdirsIfNotExists(daoFloderFile);
 		
-		mapperFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"mapper");
+		mapperFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getMapperPackage());
 		FileUtil.mkdirsIfNotExists(mapperFloderFile);
 		
-		serviceFloderFile = new File(basePackageFloderFile.getAbsolutePath(),"service");
+		serviceFloderFile = new File(basePackageFloderFile.getAbsolutePath(),getTempleteVariable().getServicePackage());
 		FileUtil.mkdirsIfNotExists(serviceFloderFile);
 		
-		serviceImplFloderFile = new File(serviceFloderFile,"impl");
+		serviceImplFloderFile = new File(serviceFloderFile,getTempleteVariable().getImplPackage());
 		FileUtil.mkdirsIfNotExists(serviceImplFloderFile);
 	}
 	
@@ -398,6 +407,17 @@ public class TableConfig {
 	 */
 	public File getServiceFloderFile() {
 		return serviceFloderFile;
+	}
+
+	public TempleteVariable getTempleteVariable() {
+		if(null == templeteVariable) {
+			setTempleteVariable(new TempleteVariable());
+		}
+		return templeteVariable;
+	}
+
+	private void setTempleteVariable(TempleteVariable templeteVariable) {
+		this.templeteVariable = templeteVariable;
 	}
 	
 }

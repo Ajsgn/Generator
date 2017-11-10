@@ -13,31 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.abs;
+package ${basePackage_}.${templeteVariable_.absPackage};
 
 import java.util.List;
 
 /**
  * <p>数据库层操作的共性方法抽象</p>
- * @ClassName: BaseDao
+ * @ClassName: Base${templeteVariable_.daoSuffix}
  * @Description: 数据库层操作的共性方法抽象
  * @author Generator
  * @date ${createDate_}
  * @param <E> E Element 类型元素，返回类型
- * @param <C> Condition 操作条件
+ * @param <C> ${templeteVariable_.conditionSuffix} 操作条件
  */
-public interface BaseDao<E,C extends DaoCondition> {
+public interface Base${templeteVariable_.daoSuffix}<E,C extends Dao${templeteVariable_.conditionSuffix}> {
 	
 	/**
 	 * <p>通过给定查询条件，查询出一组结果集</p>
-	 * @Title: selectByConditions
+	 * @Title: selectBy${templeteVariable_.conditionSuffix}
 	 * @Description: 通过给定查询条件，查询出一组结果集
-	 * @param daoConditions 查询条件
+	 * @param dao${templeteVariable_.daoSuffix} 查询条件
 	 * @return List<E> 查询结果集
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract List<E> selectByConditions(C daoConditions);
+	public abstract List<E> selectBy${templeteVariable_.conditionSuffix}(C dao${templeteVariable_.conditionSuffix});
 	
 	/**
 	 * <p>查询当前表下的所有数据</p>

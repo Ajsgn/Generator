@@ -70,7 +70,6 @@ public class Generator {
 		props.put("user",getUser());
 		props.put("password",getPassword());
 		this.conn = DriverManager.getConnection(getJdbcUrl(), props);
-		
 	}
 	
 	/**
@@ -103,6 +102,7 @@ public class Generator {
 		for(TableConfig tableConfig : tableConfigs){
 			List<ColumnInfo> columnInfos = columnInfos(databaseMetaData, tableConfig.getSchemaName(), tableConfig.getTableName());
 			Table table = new Table(driverClass,tableConfig,columnInfos);
+			table.setTempleteVariable(tableConfig.getTempleteVariable());
 			tables.add(table);
 		}
 		return tables;

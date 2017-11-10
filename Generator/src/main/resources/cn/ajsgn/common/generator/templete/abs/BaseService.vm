@@ -13,38 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.abs;
+package ${basePackage_}.${templeteVariable_.absPackage};
 
 import java.util.List;
 
 /**
  * <p>数据层的基础操作</p>
- * @ClassName: BaseService
+ * @ClassName: Base${templeteVariable_.serviceSuffix}
  * @Description: 数据层的基础操作
  * @author Generator
  * @date ${createDate_}
  */
-public interface BaseService<E, C extends DaoCondition>{
+public interface Base${templeteVariable_.serviceSuffix}<E, C extends Dao${templeteVariable_.conditionSuffix}>{
 	
 	/**
 	 * <p>通过主键ID更新一个实体bean</p>
 	 * @Title: updateById
 	 * @Description: 通过主键ID更新一个实体bean
-	 * @param entity 当前需要更新的实体bean
+	 * @param ${entityPackage} 当前需要更新的实体bean
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void updateById(E entity);
+	public abstract void updateById(E ${templeteVariable_.entityPackage});
 	
 	/**
 	 * <p>保存一条记录</p>
 	 * @Title: insert
 	 * @Description: 保存一条记录
-	 * @param entity 需要保存的实体
+	 * @param ${templeteVariable_.entityPackage} 需要保存的实体
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void insert(E entity);
+	public abstract void insert(E ${templeteVariable_.entityPackage});
 	
 	/**
 	 * <p>查询当前表里面所有的数据</p>
@@ -60,22 +60,22 @@ public interface BaseService<E, C extends DaoCondition>{
 	 * <p>通过一个查询条件，查询出一个查询结果</p>
 	 * @Title: selectFirst
 	 * @Description: 通过一个查询条件，查询出一个查询结果
-	 * @param daoConditions 查询条件
+	 * @param dao${templeteVariable_.conditionSuffix} 查询条件
 	 * @return E 查询结果
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract E selectFirst(C daoConditions);
+	public abstract E selectFirst(C dao${templeteVariable_.conditionSuffix});
 	
 	/**
 	 * <p>通过一个查询条件，查询出一个结果集合</p>
 	 * @Title: selectList
 	 * @Description: 通过一个查询条件，查询出一个结果集合
-	 * @param daoConditions 查询条件
+	 * @param dao${templeteVariable_.conditionSuffix} 查询条件
 	 * @return List<E> 查询结果
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract List<E> selectList(C daoConditions);
+	public abstract List<E> selectList(C dao${templeteVariable_.conditionSuffix});
 	
 }

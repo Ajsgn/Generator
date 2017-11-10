@@ -19,6 +19,7 @@ import java.sql.SQLException;
 
 import cn.ajsgn.common.generator.core.Generator;
 import cn.ajsgn.common.generator.db.TableConfig;
+import cn.ajsgn.common.generator.db.config.TempleteVariable;
 
 /**
  * <p>使用示例demo</p>
@@ -35,9 +36,22 @@ public class Main {
 	}
 	
 	static void mysqlTest() throws ClassNotFoundException, SQLException {
+		TempleteVariable tv = new TempleteVariable()
+			.setAbsPackage("abs")
+			.setConditionPackage("condition")
+			.setConditionSuffix("Condition")
+			.setDaoPackage("dao.mapper")
+			.setDaoSuffix("Mapper")
+			.setEntityPackage("model")
+			.setImplPackage("impl")
+			.setImplSuffix("Impl")
+			.setMapperPackage("Mapper")
+			.setServicePackage("dao")
+			.setServiceSuffix("Dao");
+		
 		Generator generator = new Generator("jdbc:mysql://192.168.0.206:3306/bcmgt","bc","123456","com.mysql.jdbc.Driver");
 //		generator.addTable(new TableConfig("test","TABLE1","Table1","d:/bcmgt","cn.ajsgn.generator.test.mysql"));
-		generator.addTable(new TableConfig("bcmgt","table_sequnence_relation","TableSequnenceRelation","d:/bcmgt","com.bc.mgt"));
+		generator.addTable(new TableConfig("bcmgt","table_sequnence_relation","TableSequnenceRelation","d:/bcmgt","com.bc.mgt", tv));
 //		generator.generator().stream().forEach(table -> table.generatorBusinessApi());
 		generator.generator().stream().forEach(table -> table.generatorAll());
 	}

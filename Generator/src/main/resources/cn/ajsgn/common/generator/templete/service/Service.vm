@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *#
-package ${basePackage_}.service;
+package ${basePackage_}.${templeteVariable_.servicePackage};
 
-import ${basePackage_}.condition.${beanName}Condition;
-import ${basePackage_}.entity.${beanName};
-import ${basePackage_}.abs.BaseService;
+import ${basePackage_}.${templeteVariable_.conditionPackage}.${beanName}${templeteVariable_.conditionSuffix};
+import ${basePackage_}.${templeteVariable_.entityPackage}.${beanName};
+import ${basePackage_}.${templeteVariable_.absPackage}.Base${templeteVariable_.serviceSuffix};
 
 /**
- * <p>${beanName}的基础操作Service</p>
- * @ClassName: ${beanName}Service
- * @Description: ${beanName}基础操作的Service
+ * <p>${beanName}的基础操作${templeteVariable_.serviceSuffix}</p>
+ * @ClassName: ${beanName}${templeteVariable_.serviceSuffix}
+ * @Description: ${beanName}基础操作的${templeteVariable_.serviceSuffix}
  * @author Generator
  * @date ${createDate_}
  */
-public interface ${beanName}Service extends BaseService<${beanName},${beanName}Condition>{
+public interface ${beanName}${templeteVariable_.serviceSuffix} extends Base${templeteVariable_.serviceSuffix}<${beanName},${beanName}${templeteVariable_.conditionSuffix}>{
 
 }
