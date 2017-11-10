@@ -27,6 +27,7 @@ class MysqlColumnMapping extends AbstractColumnMapping {
 	@Override
 	protected void javaTypeMappingInit(){
 		addColumnClassName("INT","java.lang.Integer");
+		addColumnClassName("INT UNSIGNED","java.lang.Integer");
 		addColumnClassName("BIGINT","java.lang.Long");
 		addColumnClassName("BINARY","java.lang.Byte[]");
 		addColumnClassName("BIT","java.lang.Boolean");
@@ -63,6 +64,7 @@ class MysqlColumnMapping extends AbstractColumnMapping {
 	@Override
 	protected void jdbcTypeMappingInit(){
 		addDbColumnType("INT","INTEGER");
+		addDbColumnType("INT UNSIGNED","INTEGER");
 		addDbColumnType("BIGINT","BIGINT");
 		addDbColumnType("BINARY","BINARY");
 		addDbColumnType("BIT","BIT");

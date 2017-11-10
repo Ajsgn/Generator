@@ -30,20 +30,22 @@ import cn.ajsgn.common.generator.db.TableConfig;
 public class Main {
 	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		oracleTest();
+//		oracleTest();
 		mysqlTest();
 	}
 	
 	static void mysqlTest() throws ClassNotFoundException, SQLException {
-		Generator generator = new Generator("jdbc:mysql://localhost:3306/test","root","123456","com.mysql.jdbc.Driver");
-		generator.addTable(new TableConfig("test","TABLE1","Table1","d:/123456","cn.ajsgn.generator.test.mysql"));
+		Generator generator = new Generator("jdbc:mysql://192.168.0.206:3306/bcmgt","bc","123456","com.mysql.jdbc.Driver");
+//		generator.addTable(new TableConfig("test","TABLE1","Table1","d:/bcmgt","cn.ajsgn.generator.test.mysql"));
+		generator.addTable(new TableConfig("bcmgt","table_sequnence_relation","TableSequnenceRelation","d:/bcmgt","com.bc.mgt"));
 //		generator.generator().stream().forEach(table -> table.generatorBusinessApi());
 		generator.generator().stream().forEach(table -> table.generatorAll());
 	}
 
 	static void oracleTest() throws ClassNotFoundException, SQLException {
-		Generator generator = new Generator("jdbc:oracle:thin:@localhost:1521:orcl","scott","tiger","oracle.jdbc.driver.OracleDriver");
-		generator.addTable(new TableConfig("test","TABLE1","Table1","d:/123456","cn.ajsgn.generator.test.oracle"));
+		Generator generator = new Generator("jdbc:oracle:thin:@192.168.0.161:1521:orcl","bcpay","bcpay","oracle.jdbc.driver.OracleDriver");
+		generator.addTable(new TableConfig("bcmis","SPQUICKPAYSIGN","SpdQuickPaySign","d:/123456","com.bc.spdbquickpay"));
+		generator.addTable(new TableConfig("bcmis","SPQUICKPAYREQ","SpdQuickPayReq","d:/123456","com.bc.spdbquickpay"));
 		generator.generator().stream().forEach(table -> table.generatorBusinessApi());
 	}
 

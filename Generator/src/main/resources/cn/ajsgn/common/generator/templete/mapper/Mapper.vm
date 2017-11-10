@@ -80,9 +80,7 @@
 	  #end
 	  #if($primaryKeys)
 	  #foreach( $pk in $primaryKeys)
-      <if test="${pk.columnCamelName} != null">
       AND ${pk.columnName} = #{${pk.columnCamelName},jdbcType=${columnMapping.getDbColumnType($pk.typeName)}}
-      </if>
 	  #end
 	  #end
 	</where>
