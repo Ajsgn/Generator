@@ -57,7 +57,7 @@ public interface Base${templeteVariable_.daoSuffix}<E,C extends Dao${templeteVar
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void insert(E entity);
+	public abstract int insert(E entity);
 	
 	/**
 	 * <p>根据主键更新指定实体bean</p>
@@ -67,6 +67,6 @@ public interface Base${templeteVariable_.daoSuffix}<E,C extends Dao${templeteVar
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void updateById(E entity);
+	public abstract int updateById(E entity);
 	
 }

@@ -34,8 +34,8 @@ class MysqlColumnMapping extends AbstractColumnMapping {
 		addColumnClassName("BLOB","java.lang.Byte[]");
 		addColumnClassName("BIT","java.lang.Boolean");
 		addColumnClassName("CHAR","java.lang.String");
-		addColumnClassName("DATE","java.sql.Date");
-		addColumnClassName("DATETIME","java.sql.Timestamp");
+		addColumnClassName("DATE","java.util.Date");
+		addColumnClassName("DATETIME","java.util.Date");
 		addColumnClassName("DECIMAL","java.math.BigDecimal");
 		addColumnClassName("DOUBLE","java.lang.Double");
 		addColumnClassName("ENUM","java.lang.String");
@@ -51,14 +51,14 @@ class MysqlColumnMapping extends AbstractColumnMapping {
 		addColumnClassName("SET","java.lang.String");
 		addColumnClassName("SMALLINT","java.lang.Integer");
 		addColumnClassName("TEXT","java.lang.String");
-		addColumnClassName("TIME","java.sql.Time");
-		addColumnClassName("TIMESTAMP","java.sql.Timestamp");
+		addColumnClassName("TIME","java.util.Date");
+		addColumnClassName("TIMESTAMP","java.util.Date");
 		addColumnClassName("TINYBLOB","java.lang.Byte[]");
 		addColumnClassName("TINYINT","java.lang.Integer");
 		addColumnClassName("TINYTEXT","java.lang.String");
 		addColumnClassName("VARBINARY","java.lang.Byte[]");
 		addColumnClassName("VARCHAR","java.lang.String");
-		addColumnClassName("YEAR","java.sql.Date");
+		addColumnClassName("YEAR","java.util.Date");
 	}
 	
 	@Override

@@ -30,8 +30,8 @@ import java.util.List;
 public abstract class Abstract${templeteVariable_.serviceSuffix}${templeteVariable_.implSuffix}<E,C extends Dao${templeteVariable_.conditionSuffix},D extends Base${templeteVariable_.daoSuffix}<E, C>> implements Base${templeteVariable_.serviceSuffix}<E,C> {
 	
 	@Override
-	public void updateById(E ${templeteVariable_.entityPackage}) {
-		daoSupport().updateById(${templeteVariable_.entityPackage});
+	public int updateById(E ${templeteVariable_.entityPackage}) {
+		return daoSupport().updateById(${templeteVariable_.entityPackage});
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public abstract class Abstract${templeteVariable_.serviceSuffix}${templeteVariab
 	}
 	
 	@Override
-	public void insert(E ${templeteVariable_.entityPackage}) {
-		daoSupport().insert(${templeteVariable_.entityPackage});
+	public int insert(E ${templeteVariable_.entityPackage}) {
+		return daoSupport().insert(${templeteVariable_.entityPackage});
 	}
 	
 	/**

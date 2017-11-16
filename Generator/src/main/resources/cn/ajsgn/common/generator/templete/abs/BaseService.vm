@@ -34,7 +34,7 @@ public interface Base${templeteVariable_.serviceSuffix}<E, C extends Dao${temple
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void updateById(E ${templeteVariable_.entityPackage});
+	public abstract int updateById(E ${templeteVariable_.entityPackage});
 	
 	/**
 	 * <p>保存一条记录</p>
@@ -44,7 +44,7 @@ public interface Base${templeteVariable_.serviceSuffix}<E, C extends Dao${temple
 	 * @author Generator
 	 * @date ${createDate_}
 	 */
-	public abstract void insert(E ${templeteVariable_.entityPackage});
+	public abstract int insert(E ${templeteVariable_.entityPackage});
 	
 	/**
 	 * <p>查询当前表里面所有的数据</p>

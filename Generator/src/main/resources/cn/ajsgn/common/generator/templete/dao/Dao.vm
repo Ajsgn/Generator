@@ -17,7 +17,7 @@ package ${basePackage_}.${templeteVariable_.daoPackage};
 
 import org.apache.ibatis.annotations.Mapper;
 
-import ${basePackage_}.${templeteVariable_.daoPackage}.${beanName}${templeteVariable_.conditionSuffix};
+import ${basePackage_}.${templeteVariable_.conditionPackage}.${beanName}${templeteVariable_.conditionSuffix};
 import ${basePackage_}.${templeteVariable_.entityPackage}.${beanName};
 import ${basePackage_}.${templeteVariable_.absPackage}.Base${templeteVariable_.daoSuffix};
 
